@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - CleanItJet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @keyframes checkmark {
+            0% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        .checkmark-circle {
+            animation: checkmark 0.6s ease-in-out forwards;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+    </style>
+</head>
+<body class="bg-white text-zinc-600 antialiased selection:bg-zinc-900 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-md">
+        <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+            <a href="/index.html" class="text-xl font-semibold tracking-tighter text-zinc-900 flex items-center gap-2">
+                <span class="iconify text-zinc-900" data-icon="lucide:plane" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                CleanItJet
+            </a>
+        </div>
+    </nav>
+
+    <!-- Success Content -->
+    <main class="relative pt-32 pb-16 min-h-screen flex items-center justify-center">
+        <div class="mx-auto max-w-2xl px-6 text-center">
+            
+            <!-- Animated Checkmark -->
+            <div class="mb-8 flex justify-center">
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full bg-green-50 flex items-center justify-center">
+                        <svg class="w-16 h-16" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none" stroke="#22c55e" stroke-width="3"/>
+                            <path class="checkmark-circle" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" d="M14 27l8 8 16-16"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="text-4xl font-medium tracking-tight text-zinc-900 mb-4">
+                Booking Confirmed!
+            </h1>
+            
+            <p class="text-lg text-zinc-600 mb-8">
+                Your payment has been processed successfully.
+            </p>
+
+            <!-- Information Box -->
+            <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-8 text-left mb-8">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="flex-none mt-1">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                            <span class="iconify text-blue-600" data-icon="lucide:phone" data-width="20" data-stroke-width="1.5"></span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-medium text-zinc-900 mb-2">What happens next?</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed">
+                            <strong>Expect a phone call or email within 20 minutes</strong> from our dispatch team to confirm your service appointment and coordinate arrival time with your aircraft location.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border-t border-zinc-200 pt-6 space-y-4">
+                    <div class="flex items-start gap-3">
+                        <span class="iconify text-zinc-400 mt-0.5" data-icon="lucide:check-circle" data-width="18" data-stroke-width="1.5"></span>
+                        <p class="text-sm text-zinc-600">A confirmation email has been sent to your registered email address with all booking details.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="iconify text-zinc-400 mt-0.5" data-icon="lucide:check-circle" data-width="18" data-stroke-width="1.5"></span>
+                        <p class="text-sm text-zinc-600">Our elite detailing crew will arrive fully equipped with all necessary supplies and equipment.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="iconify text-zinc-400 mt-0.5" data-icon="lucide:check-circle" data-width="18" data-stroke-width="1.5"></span>
+                        <p class="text-sm text-zinc-600">All crew members are fully insured, background-checked, and covered by strict NDAs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Details (if available) -->
+            <div id="booking-details" class="hidden rounded-xl border border-zinc-200 bg-white p-6 text-left mb-8">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-500 mb-4">Booking Details</h3>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-zinc-600">Confirmation #:</span>
+                        <span id="session-id" class="font-medium text-zinc-900">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-600">Tail Number:</span>
+                        <span id="tail-number" class="font-medium text-zinc-900">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-600">Airport Code:</span>
+                        <span id="airport-code" class="font-medium text-zinc-900">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-600">Service Type:</span>
+                        <span id="service-type" class="font-medium text-zinc-900">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/index.html" class="inline-flex items-center justify-center gap-2 rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-zinc-200 hover:bg-zinc-800 transition-all">
+                    <span class="iconify" data-icon="lucide:home" data-width="16" data-stroke-width="1.5"></span>
+                    Return to Home
+                </a>
+            </div>
+
+            <!-- Support Info -->
+            <div class="mt-12 pt-8 border-t border-zinc-200">
+                <p class="text-sm text-zinc-500">
+                    Questions about your booking? Contact us at 
+                    <a href="mailto:support@cleanitjet.com" class="text-zinc-900 hover:underline font-medium">support@cleanitjet.com</a>
+                    or call <a href="tel:+18005551234" class="text-zinc-900 hover:underline font-medium">(800) 555-1234</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-100 bg-white pt-16 pb-8">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-zinc-400">© 2024 CleanItJet Inc. All rights reserved.</p>
+                <div class="flex gap-4 text-zinc-400">
+                    <span class="iconify hover:text-zinc-900 cursor-pointer transition-colors" data-icon="lucide:twitter" data-width="16"></span>
+                    <span class="iconify hover:text-zinc-900 cursor-pointer transition-colors" data-icon="lucide:linkedin" data-width="16"></span>
+                    <span class="iconify hover:text-zinc-900 cursor-pointer transition-colors" data-icon="lucide:instagram" data-width="16"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get session ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+
+        if (sessionId) {
+            // Fetch session details from backend
+            fetch(`http://localhost:3000/session/${sessionId}`)
+                .then(response => response.json())
+                .then(session => {
+                    // Display booking details
+                    const detailsDiv = document.getElementById('booking-details');
+                    detailsDiv.classList.remove('hidden');
+
+                    // Update confirmation number
+                    document.getElementById('session-id').textContent = sessionId.substring(0, 16) + '...';
+
+                    // Update metadata if available
+                    if (session.metadata) {
+                        if (session.metadata.tailNumber) {
+                            document.getElementById('tail-number').textContent = session.metadata.tailNumber;
+                        }
+                        if (session.metadata.airportCode) {
+                            document.getElementById('airport-code').textContent = session.metadata.airportCode;
+                        }
+                        if (session.metadata.serviceTier) {
+                            let serviceName = session.metadata.serviceTier;
+                            if (serviceName === 'turnaround') serviceName = 'The Turnaround';
+                            else if (serviceName === 'layover') serviceName = 'The Layover';
+                            else if (serviceName === 'redcarpet') serviceName = 'Red Carpet';
+                            
+                            if (session.metadata.includeExterior === 'yes') {
+                                serviceName += ' + Exterior Detail';
+                            }
+                            document.getElementById('service-type').textContent = serviceName;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching session:', error);
+                });
+        }
+    </script>
+
+</body>
+</html>
