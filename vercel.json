@@ -4,32 +4,30 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/create-checkout-session",
+      "methods": ["POST"],
       "dest": "server.js"
     },
     {
       "src": "/session/(.*)",
+      "methods": ["GET"],
       "dest": "server.js"
     },
     {
-      "src": "/index.html",
-      "dest": "index.html"
-    },
-    {
       "src": "/success.html",
-      "dest": "success.html"
+      "dest": "/success.html"
     },
     {
       "src": "/",
-      "dest": "index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/index.html"
     }
   ]
 }
