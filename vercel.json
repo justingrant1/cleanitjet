@@ -8,6 +8,14 @@
     {
       "src": "*.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "airports/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "aircraft/*.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -20,6 +28,14 @@
       "src": "/session/(.*)",
       "methods": ["GET"],
       "dest": "server.js"
+    },
+    {
+      "src": "/airports/([^/]+)\\.html",
+      "dest": "/airports/$1.html"
+    },
+    {
+      "src": "/aircraft/([^/]+)\\.html",
+      "dest": "/aircraft/$1.html"
     },
     {
       "src": "/success.html",
