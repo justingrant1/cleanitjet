@@ -30,6 +30,14 @@
       "dest": "server.js"
     },
     {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
       "src": "/airports/([^/]+)\\.html",
       "dest": "/airports/$1.html"
     },
