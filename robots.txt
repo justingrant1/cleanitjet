@@ -1,0 +1,10 @@
+# robots.txt for CleanItJet
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://cleanitjet.vercel.app/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
