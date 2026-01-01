@@ -157,7 +157,7 @@
 
         if (sessionId) {
             // Fetch session details from backend
-            fetch(`http://localhost:3000/session/${sessionId}`)
+            fetch(`/session/${sessionId}`)
                 .then(response => response.json())
                 .then(session => {
                     // Display booking details
